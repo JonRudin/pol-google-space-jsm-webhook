@@ -1,0 +1,22 @@
+# Node.js
+node_modules/
+dist/
+.env
+*.log
+
+# TypeScript
+*.tsbuildinfo
+
+# IDEs and OS
+.DS_Store
+.idea/
+.vscode/
+.idea/.gitignore
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
