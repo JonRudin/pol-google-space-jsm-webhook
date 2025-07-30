@@ -43,9 +43,16 @@ jobs:
         run: |
           gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE --project $PROJECT_ID
 
+      - name: Create Kubernetes Secret
+        run: |
+          kubectl create secret generic google-space-jsm-webhook-secrets \
+            --from-literal=WEBHOOK_URL=${{ secrets.WEBHOOK_URL }} \
+            --from-literal=ANOTHER_SECRET=${{ secrets.ANOTHER_SECRET }} \
+            --namespace=$NAMESPACE \
+            --dry-run=client -o yaml | kubectl apply -f -
+
       - name: Apply Kubernetes configs
         run: |
-          kubectl apply -f k8s/secrets.yaml -n $NAMESPACE
           kubectl apply -f k8s/deployment.yaml -n $NAMESPACE
           kubectl apply -f k8s/service.yaml -n $NAMESPACE
           kubectl rollout restart deployment $IMAGE_NAME -n $NAMESPACE
