@@ -11,7 +11,8 @@ jobs:
 
     env:
       PROJECT_ID: rise-sandbox
-      REGION: europe-west2-a
+      REGION: europe-west2
+      CLUSTER_ZONE: europe-west2-a
       CLUSTER_NAME: rise-sandbox
       IMAGE_NAME: google-space-jsm-webhook-poc
       NAMESPACE: google-space-jsm-webhook-poc
