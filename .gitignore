@@ -16,6 +16,7 @@ k8s/secrets.yaml
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+google-space-jsm-webhook-poc.iml
 
 # Logs
 npm-debug.log*
