@@ -3,6 +3,7 @@ node_modules/
 dist/
 .env
 *.log
+k8s/secrets.yaml
 
 # TypeScript
 *.tsbuildinfo
@@ -16,7 +17,6 @@ dist/
 .idea/modules.xml
 .idea/vcs.xml
 
-
 # Logs
 npm-debug.log*
-yarn-debug.log*
+yarn

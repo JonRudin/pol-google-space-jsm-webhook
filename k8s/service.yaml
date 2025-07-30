@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: google-space-jsm-webhook-poc
+  namespace: google-space-jsm-webhook-poc
+spec:
+  selector:
+    app: google-space-jsm-webhook-poc
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
