@@ -12,6 +12,7 @@ const JSMOpenAlertsUrl = process.env.JSMOpenAlertsUrl
 
 app.post('/incoming-alert', async (req, res) => {
     try {
+        const action = req.body.action;
         const alert = req.body.alert;
         const responders = alert.responders;
         const noteLine = alert.note ? `\n*Note:* ${alert.note}` : '';
@@ -37,6 +38,7 @@ app.post('/incoming-alert', async (req, res) => {
             text:
                 `🚨 *New Alert from Datadog*
 
+*Action:* ${action}
 *Message:* ${alert.message}
 *Priority:* ${alert.priority}
 *Team:* ${responders?.[0]?.name || 'POL'}${noteLine}
