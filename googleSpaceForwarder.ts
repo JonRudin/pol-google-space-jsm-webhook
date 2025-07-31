@@ -27,16 +27,22 @@ app.post('/incoming-alert', async (req, res) => {
             if (description.includes('@slack-pol-rec-alerts-prod')) return process.env.webhookRec;
             if (description.includes('@slack-pol-cards-alerts-prod')) return process.env.webhookCards;
             if (description.includes('@slack-pol-bacs-alerts-prod')) return process.env.webhookBacs;
-            return process.env.googleChatUrl; // fallback
+            return process.env.googleChatUrl;
         })();
 
         if (!alert || !alert.message) {
             return res.status(400).send('Missing alert message');
         }
 
+        const statusEmoji = (() => {
+            if (action?.toLowerCase() === 'close') return '🟢';
+            if (action?.toLowerCase() === 'acknowledge') return '🟠';
+            return '🔴';
+        })();
+
         const chatMessage = {
             text:
-                `🚨 *New Alert from Datadog*
+                `${statusEmoji} *New Alert from Datadog*
 
 *Action:* ${action}
 *Message:* ${alert.message}
@@ -48,10 +54,10 @@ app.post('/incoming-alert', async (req, res) => {
         };
 
         await axios.post(webhookUrl, chatMessage);
-        console.log('✅ Sent to Google Chat');
+        console.log('Sent to Google Chat');
         res.status(200).send('Forwarded');
     } catch (err) {
-        console.error('❌ Error:', err);
+        console.error('Error:', err);
         res.status(500).send('Failed to forward');
     }
 });
