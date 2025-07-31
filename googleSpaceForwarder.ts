@@ -13,6 +13,8 @@ const JSMOpenAlertsUrl = process.env.JSMOpenAlertsUrl
 app.post('/incoming-alert', async (req, res) => {
     try {
         const alert = req.body.alert;
+        const responders = alert.responders;
+        const noteLine = alert.note ? `\n*Note:* ${alert.note}` : '';
 
         const description = alert.description || '';
 
@@ -37,9 +39,10 @@ app.post('/incoming-alert', async (req, res) => {
 
 *Message:* ${alert.message}
 *Priority:* ${alert.priority}
-*Team:* ${alert.team}
+*Team:* ${responders?.[0]?.name || 'POL'}${noteLine}
 
-[View Monitor](${alert.details?.["Event Url"]}) | [Open JSM Alerts](${JSMOpenAlertsUrl})`
+[View Monitor](${alert.details?.["Event Url"]})
+[Open JSM Alerts](${JSMOpenAlertsUrl})`
         };
 
         await axios.post(webhookUrl, chatMessage);
