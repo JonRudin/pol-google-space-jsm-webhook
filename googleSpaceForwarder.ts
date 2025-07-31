@@ -35,8 +35,9 @@ app.post('/incoming-alert', async (req, res) => {
         }
 
         const statusEmoji = (() => {
-            if (action?.toLowerCase() === 'close') return '🟢';
-            if (action?.toLowerCase() === 'acknowledge') return '🟠';
+            const actionLower = action?.toLowerCase();
+            if (actionLower === 'close') return '🟢';
+            if (actionLower === 'acknowledge' || actionLower === 'addnote') return '🟠';
             return '🔴';
         })();
 
