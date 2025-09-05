@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: google-space-jsm-webhook-poc
-  namespace: google-space-jsm-webhook-poc
+  name: pol-google-space-jsm-webhook
+  namespace: pol-google-space-jsm-webhook
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: google-space-jsm-webhook-poc
+      app: pol-google-space-jsm-webhook
   template:
     metadata:
       labels:
-        app: google-space-jsm-webhook-poc
+        app: pol-google-space-jsm-webhook
     spec:
       containers:
-        - name: google-space-jsm-webhook-poc
-          image: europe-west2-docker.pkg.dev/rise-sandbox/google-space-jsm-webhook-poc/latest
+        - name: pol-google-space-jsm-webhook
+          image: europe-west2-docker.pkg.dev/rise-sandbox/pol-google-space-jsm-webhook/latest
           ports:
             - containerPort: 8080
           env:

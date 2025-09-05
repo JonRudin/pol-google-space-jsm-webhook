@@ -14,8 +14,8 @@ jobs:
       REGION: europe-west2
       CLUSTER_ZONE: europe-west2-a
       CLUSTER_NAME: rise-sandbox
-      IMAGE_NAME: google-space-jsm-webhook-poc
-      NAMESPACE: google-space-jsm-webhook-poc
+      IMAGE_NAME: pol-google-space-jsm-webhook
+      NAMESPACE: pol-google-space-jsm-webhook
 
     steps:
       - name: Checkout code
