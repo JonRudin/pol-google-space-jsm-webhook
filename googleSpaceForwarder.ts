@@ -51,6 +51,7 @@ app.post('/incoming-alert', async (req, res) => {
 *Team:* ${responders?.[0]?.name || 'POL'}${noteLine}
 
 [View Monitor](${alert.details?.["Event Url"]})
+[View Logs](https://app.datadoghq.com/logs?query=${encodeURIComponent(alert.query)})
 [Open JSM Alerts](${JSMOpenAlertsUrl})`
         };
 
