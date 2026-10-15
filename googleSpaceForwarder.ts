@@ -16,6 +16,8 @@ app.post('/incoming-alert', async (req, res) => {
         const alert = req.body.alert;
         const responders = alert.responders;
         const noteLine = alert.note ? `\n*Note:* ${alert.note}` : '';
+        const monitorUrl = alert.details?.["Event URL"] ?? alert.details?.["Event Url"];
+        const monitorLine = monitorUrl ? `[View Monitor](${monitorUrl})\n` : '';
 
         const description = alert.description || '';
 
@@ -50,8 +52,7 @@ app.post('/incoming-alert', async (req, res) => {
 *Priority:* ${alert.priority}
 *Team:* ${responders?.[0]?.name || 'POL'}${noteLine}
 
-[View Monitor](${alert.details?.["Event Url"]})
-[Open JSM Alerts](${JSMOpenAlertsUrl})`
+${monitorLine}[Open JSM Alerts](${JSMOpenAlertsUrl})`
         };
 
         await axios.post(webhookUrl, chatMessage);
