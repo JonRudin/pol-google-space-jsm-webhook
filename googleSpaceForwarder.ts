@@ -16,7 +16,6 @@ app.post('/incoming-alert', async (req, res) => {
         const alert = req.body.alert;
         const responders = alert.responders;
         const noteLine = alert.note ? `\n*Note:* ${alert.note}` : '';
-        // JSM Ops sends "Event URL"; alerts raised via the retired Opsgenie handle carry "Event Url".
         const monitorUrl = alert.details?.["Event URL"] ?? alert.details?.["Event Url"];
         const monitorLine = monitorUrl ? `[View Monitor](${monitorUrl})\n` : '';
 
