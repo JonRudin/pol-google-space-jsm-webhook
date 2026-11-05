@@ -29,7 +29,6 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: projects/431671860070/locations/global/workloadIdentityPools/pol-jsm-webhook-gha/providers/github
-          service_account: github-deploy-bot@rise-sandbox.iam.gserviceaccount.com
 
       - name: Set up Docker to use gcloud
         run: |
