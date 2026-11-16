@@ -29,6 +29,7 @@ app.post('/incoming-alert', async (req, res) => {
             if (description.includes('@slack-pol-rec-alerts-prod')) return process.env.webhookRec;
             if (description.includes('@slack-pol-cards-alerts-prod')) return process.env.webhookCards;
             if (description.includes('@slack-pol-bacs-alerts-prod')) return process.env.webhookBacs;
+            if (description.includes('@slack-pol-payouts-alerts-prod')) return process.env.webhookPayouts;
             return process.env.googleChatUrl;
         })();
 
